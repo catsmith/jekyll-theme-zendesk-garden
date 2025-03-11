@@ -20,11 +20,17 @@
 <div id="{{ accordian_id }}"
     class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_{{ collapsibleClass }}">
     {% for child in include.entry.children %}
-        {% assign is_child=true %}
+        {% if include.is_child == true %}
+            {% assign is_grandchild=true %}
+            {% assign is_child=false %}
+        {% else %}
+            {% assign is_grandchild=false %}
+            {% assign is_child=true %}
+        {% endif %}
         {% if child.children %}
             {% include submenu.html entry=child is_child=is_child %}
         {% else %}
-            {% include menu_item.html item=child is_child=is_child %}
+            {% include menu_item.html item=child is_child=is_child is_grandchild=is_grandchild %}
         {% endif %}
     {% endfor %}
 </div>

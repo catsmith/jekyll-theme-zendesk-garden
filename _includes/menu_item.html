@@ -10,7 +10,12 @@
     {% else %}
         {% assign child_class = "" %}
     {% endif %}
-    <a href="{{ meta.url | relative_url }}" class="chrome:sidebar_item {{ active_class }} {{ child_class }}">
+    {% if include.is_grandchild == true %}
+        {% assign grandchild_class = "chrome:sidebar_item_grandchild" %}
+    {% else %}
+        {% assign grandchild_class = "" %}
+    {% endif %}
+    <a href="{{ meta.url | relative_url }}" class="chrome:sidebar_item {{ active_class }} {{ child_class }} {{ grandchild_class }}">
         <span class="chrome:sidebar_item_text">{{ meta.sidebar_label | default: meta.title }}</span>
     </a>
 {% endif %}
