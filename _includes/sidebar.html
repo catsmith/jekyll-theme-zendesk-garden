@@ -1,6 +1,7 @@
 <div class="chrome:sidebar">
   {% for item in site.sidebar %}
     {% if item.children %}
+      {{ item }}
       {% include submenu.html entry=item %}
     {% else %}
       {% assign meta = site.pages | where: "id", item | first %}
