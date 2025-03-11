@@ -5,12 +5,13 @@
     {% else %}
         {% assign active_class = "" %}
     {% endif %}
-    {% if include.is_child %}
+    {% if include.is_child == true%}
         {% assign child_class = "chrome:sidebar_item_child" %}
     {% else %}
         {% assign child_class = "" %}
     {% endif %}
     <a href="{{ meta.url | relative_url }}" class="chrome:sidebar_item {{ active_class }} {{ child_class }}">
+       {{ include.is_child }}
         <span class="chrome:sidebar_item_text">{{ meta.sidebar_label | default: meta.title }}</span>
     </a>
 {% endif %}
