@@ -3,7 +3,8 @@
     {% if item.children %}
       {% include submenu.html entry=item %}
     {% else %}
-      {% include menu_item.html item=item child='false' %}
+      {% assign is_child=false %}
+      {% include menu_item.html item=item is_child=is_child %}
     {% endif %}
   {% endfor %}
 </div>

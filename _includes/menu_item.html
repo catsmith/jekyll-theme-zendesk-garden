@@ -5,7 +5,7 @@
     {% else %}
         {% assign active_class = "" %}
     {% endif %}
-    {% if include.is_child == "true" %}
+    {% if include.is_child %}
         {% assign child_class = "chrome:sidebar_item_child" %}
     {% else %}
         {% assign child_class = "" %}
