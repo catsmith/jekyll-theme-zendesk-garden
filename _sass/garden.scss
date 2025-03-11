@@ -365,6 +365,10 @@ blockquote {
   padding-left: 20px;
 }
 
+.chrome\:sidebar_item_text.chrome\:sidebar_item_child {
+  padding-left: 20px;
+}
+
 .chrome\:collapsible_sub_nav_item_icon {
   @extend .flex;
   @extend .absolute;
