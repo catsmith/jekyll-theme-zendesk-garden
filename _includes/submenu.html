@@ -4,21 +4,26 @@
 {% capture collapsibleClass %}
 {%- if include.entry.children contains page.id -%}expanded{%- else -%}collapsed{%- endif -%}
 {% endcapture %}
+{% if include.is_child == true %}
+    {% assign child_class = "chrome:sidebar_item_child" %}
+{% else %}
+    {% assign child_class = "" %}
+{% endif %}
 <button
     id="{{ id }}"
     class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_{{ collapsibleClass }}"
     onclick="toggleAccordian('{{ id }}')"
 >
-    <span class="chrome:sidebar_item_text">{{ include.entry.label }}</span>
+    <span class="chrome:sidebar_item_text {{ child_class }}">{{ include.entry.label }}</span>
     {% include collapsible_sidebar_icon.html %}
 </button>
 <div id="{{ accordian_id }}"
     class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_{{ collapsibleClass }}">
     {% for child in include.entry.children %}
+        {% assign is_child=true %}
         {% if child.children %}
-            {% include submenu.html entry=child %}
+            {% include submenu.html entry=child is_child=is_child %}
         {% else %}
-            {% assign is_child=true %}
             {% include menu_item.html item=child is_child=is_child %}
         {% endif %}
     {% endfor %}
