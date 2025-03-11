@@ -4,6 +4,7 @@
 {% capture collapsibleClass %}
 {%- if entry.children contains page.id -%}expanded{%- else -%}collapsed{%- endif -%}
 {% endcapture %}
+{{ entry }}
 <button
     id="{{ id }}"
     class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_{{ collapsibleClass }}"
