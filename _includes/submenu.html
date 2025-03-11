@@ -1,21 +1,21 @@
 
-{% capture id %}sidebar_item:{{ entry.label | strip | downcase | remove: "'" | remove: '"' | escape }}{% endcapture %}
+{% capture id %}sidebar_item:{{ include.entry.label | strip | downcase | remove: "'" | remove: '"' | escape }}{% endcapture %}
 {% capture accordian_id %}{{ id }}:accordian{% endcapture %}
 {% capture collapsibleClass %}
-{%- if entry.children contains page.id -%}expanded{%- else -%}collapsed{%- endif -%}
+{%- if include.entry.children contains page.id -%}expanded{%- else -%}collapsed{%- endif -%}
 {% endcapture %}
-{{ entry }}
+{{ include.entry }}
 <button
     id="{{ id }}"
     class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_{{ collapsibleClass }}"
     onclick="toggleAccordian('{{ id }}')"
 >
-    <span class="chrome:sidebar_item_text">{{ entry.label }}</span>
+    <span class="chrome:sidebar_item_text">{{ include.entry.label }}</span>
     {% include collapsible_sidebar_icon.html %}
 </button>
 <div id="{{ accordian_id }}"
     class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_{{ collapsibleClass }}">
-    {% for child in entry.children %}
+    {% for child in include.entry.children %}
         {% assign meta = site.pages | where: "id", child | first %}
         {% if meta %}
             {% if page.id == meta.id %}
