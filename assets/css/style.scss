@@ -46,3 +46,7 @@ h1:hover::before {
   @extend .no-underline;
   @extend .hover\:no-underline;
 }
+
+table {
+  word-break: normal !important;
+}
